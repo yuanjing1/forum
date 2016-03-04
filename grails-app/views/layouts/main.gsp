@@ -26,6 +26,8 @@
           <sec:ifAllGranted roles='ROLE_ADMIN'>
             <g:link controller="user">User</g:link>
             <g:link controller="section">Section</g:link>
+            <g:link controller="topic">Topic</g:link>
+            <g:link controller="discussionThread">DiscussionThread</g:link>
             <g:link controller="admin">Admin</g:link>
           </sec:ifAllGranted>
 

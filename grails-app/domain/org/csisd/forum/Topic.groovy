@@ -16,4 +16,5 @@ class Topic {
     public long getNumberOfReplies() {
         Topic.executeQuery("select count(*) from Topic t join t.threads thr join thr.comments c where t.id = :topicId", [topicId:id])[0]
     }
+    String toString() {"$title: $description"}
 }

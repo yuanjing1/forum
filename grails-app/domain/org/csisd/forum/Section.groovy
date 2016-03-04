@@ -5,4 +5,5 @@ class Section {
     String title
     static constraints = {
     }
+    String toString() {title}
 }

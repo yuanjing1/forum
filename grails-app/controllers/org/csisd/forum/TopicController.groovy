@@ -5,6 +5,6 @@ import grails.transaction.Transactional
 
 @Secured(['ROLE_ADMIN'])
 @Transactional(readOnly = true)
-class SectionController {
-    static scaffold = Section
+class TopicController {
+    static scaffold = Topic
 }

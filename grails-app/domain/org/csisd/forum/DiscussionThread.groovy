@@ -16,4 +16,5 @@ class DiscussionThread {
 
     static constraints = {
     }
+    String toString() {"$opener.username: $subject"}
 }
