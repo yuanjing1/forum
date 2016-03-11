@@ -3,6 +3,7 @@ package org.csisd.forum
 import org.csisd.user.User
 
 class DiscussionThread {
+    static searchable = true
     static belongsTo = Topic
     static hasMany = [comments:Comment]
     Topic topic

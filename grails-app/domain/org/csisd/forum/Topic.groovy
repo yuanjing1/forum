@@ -1,6 +1,7 @@
 package org.csisd.forum
 
 class Topic {
+    static searchable = true
     static belongsTo = Section
     static hasMany = [threads:DiscussionThread]
     Section section

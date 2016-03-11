@@ -44,6 +44,7 @@ grails.project.dependency.resolution = {
         //mavenRepo "http://repository.codehaus.org"
         //mavenRepo "http://download.java.net/maven/2/"
         //mavenRepo "http://repository.jboss.com/maven2/"
+        mavenRepo "http://repo.grails.org/grails/core" // needed for compass, etc.
     }
 
     dependencies {
@@ -64,7 +65,7 @@ grails.project.dependency.resolution = {
         compile ":asset-pipeline:2.5.7"
 
         // plugins needed at runtime but not for compilation
-        runtime ":hibernate4:4.3.10" // or ":hibernate:3.6.10.18"
+        runtime ":hibernate:3.6.10.18" // or":hibernate4:4.3.10" //downgrade from 4 to 3 to work with Searchable plugin
         runtime ":database-migration:1.4.0"
         runtime ":jquery:1.11.1"
 
@@ -78,5 +79,6 @@ grails.project.dependency.resolution = {
         compile ":admin-interface:0.7.1"
         compile ":mail:1.0.7"
         compile ":platform-core:1.0.0"
+        compile ":searchable:0.6.9"
     }
 }

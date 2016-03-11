@@ -3,6 +3,7 @@ package org.csisd.forum
 import org.csisd.user.User
 
 class Comment {
+    static searchable = true
     static belongsTo = DiscussionThread
     DiscussionThread thread
     User commentBy
