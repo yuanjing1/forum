@@ -17,5 +17,5 @@ class DiscussionThread {
 
     static constraints = {
     }
-    String toString() {"$opener.username: $subject"}
+    String toString() {"$opener: $subject"}
 }

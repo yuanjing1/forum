@@ -595,6 +595,10 @@ a.skip {
 	left: -9999px;
 }
 
+a.skip:focus, a.skip:active {
+	position: relative;
+	left: 0px;
+}
 /* FORUM */
 .section {
     margin: 15px 10px 15px 10px;

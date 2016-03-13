@@ -12,4 +12,5 @@ class Comment {
     static constraints = {
         body( maxSize: 8000)
     }
+    String toString() {body}
 }
