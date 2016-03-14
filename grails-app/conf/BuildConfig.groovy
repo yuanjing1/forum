@@ -20,7 +20,11 @@ grails.project.fork = [
     // configure settings for the Console UI JVM
     console: [maxMemory: 768, minMemory: 64, debug: false, maxPerm: 256]
 ]
-
+grails.war.resources = { stagingDir, args ->
+    copy(todir: "${stagingDir}/WEB-INF/lib", flatten: "true") {
+        fileset(dir: "${grailsHome}/lib", includes: "**/jline-*.jar, **/jansi-*.jar")
+    }
+}
 grails.project.dependency.resolver = "maven" // or ivy
 grails.project.dependency.resolution = {
     // inherit Grails' default dependencies

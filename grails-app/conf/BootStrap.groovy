@@ -28,8 +28,8 @@ class BootStrap {
 
     def init = { servletContext ->
 
-        User admin = new User(username:'admin', password:'admin', email:'yuanjing.xu@gmail.com', enabled:true).save()
-        User Serena = new User(username:'serena', password:'serena', email:'serenalwang@yahoo.com', enabled:true).save()
+        User admin = new User(username:'admin', password:'admin', email:'xu_yuanjing@yahoo.com', enabled:true).save()
+        User Serena = new User(username:'serena', password:'serena', email:'serenalwang@gmail.com', enabled:true).save()
         User Woody = new User(username:'woody', password:'woody',  email:'woodywang153@gmail.com',enabled:true).save()
         User Rosetta = new User(username:'rosetta', password:'rosetta', email:'rosettawang@gmail.com', enabled:true).save()
         Role roleAdmin = new Role(authority: 'ROLE_ADMIN').save()

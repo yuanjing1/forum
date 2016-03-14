@@ -2,3 +2,7 @@ target/
 .idea/
 *.iml
 out/
+.asscache
+.classpath
+.project
+test/
