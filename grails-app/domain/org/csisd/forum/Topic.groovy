@@ -9,12 +9,13 @@ class Topic {
     String description
 
     static constraints = {
+        description nullable: true
     }
-    public long getNumberOfThreads() {
-        DiscussionThread.countByTopic(this)
+    public long findNumberOfThreads() {
+        DiscussionThread?.countByTopic(this)
     }
 
-    public long getNumberOfReplies() {
+    public long findNumberOfReplies() {
         Topic.executeQuery("select count(*) from Topic t join t.threads thr join thr.comments c where t.id = :topicId", [topicId:id])[0]
     }
     String toString() {"$title: $description"}

@@ -9,7 +9,9 @@
 	<body>
         <g:each in="${sections}" var="section">
             <div class="section">
-                <div class="sectionTitle">${section.title}</div>
+                <div class="sectionTitle">
+                    <g:link controller="section" action="show" id="${section.id}">${section.title}</g:link>
+                </div>
                 <g:each in="${section.topics.sort{it.title}}" var="topic">
                     <div class="topic">
                         <g:link controller="forum" action="topic" params="[topicId:topic.id]" >
@@ -18,8 +20,8 @@
                         <span class="topicDesc">${topic.description}</span>
 
                         <div class="rightInfo">
-                            <b>threads</b>: ${topic.numberOfThreads}
-                            <b>replies</b>: ${topic.numberOfReplies}
+                            <b>threads</b>: ${topic.findNumberOfThreads()}
+                            <b>replies</b>: ${topic.findNumberOfReplies()}
                         </div>
                     </div>
                 </g:each>
