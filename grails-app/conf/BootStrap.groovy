@@ -27,72 +27,78 @@ class BootStrap {
     }
 
     def init = { servletContext ->
+        if (User.count() == 0) {
+            User admin = new User(username: 'admin', password: 'admin', email: 'xu_yuanjing@yahoo.com', enabled: true).save()
+            User Serena = new User(username: 'serena', password: 'serena', email: 'serenalwang@gmail.com', enabled: true).save()
+            User Woody = new User(username: 'woody', password: 'woody', email: 'woodywang153@gmail.com', enabled: true).save()
+            User Rosetta = new User(username: 'rosetta', password: 'rosetta', email: 'rosettawang@gmail.com', enabled: true).save()
+            Role roleAdmin = new Role(authority: 'ROLE_ADMIN').save()
+            Role roleUser = new Role(authority: 'ROLE_USER').save()
+            UserRole.create admin, roleAdmin
+            UserRole.create Serena, roleUser
+            UserRole.create Woody, roleUser
+            UserRole.create Rosetta, roleUser
 
-        User admin = new User(username:'admin', password:'admin', email:'xu_yuanjing@yahoo.com', enabled:true).save()
-        User Serena = new User(username:'serena', password:'serena', email:'serenalwang@gmail.com', enabled:true).save()
-        User Woody = new User(username:'woody', password:'woody',  email:'woodywang153@gmail.com',enabled:true).save()
-        User Rosetta = new User(username:'rosetta', password:'rosetta', email:'rosettawang@gmail.com', enabled:true).save()
-        Role roleAdmin = new Role(authority: 'ROLE_ADMIN').save()
-        Role roleUser = new Role(authority: 'ROLE_USER').save()
-        UserRole.create admin, roleAdmin
-        UserRole.create Serena, roleUser
-        UserRole.create Woody, roleUser
-        UserRole.create Rosetta, roleUser
+            UserRole.withSession {
+                it.flush()
+                it.clear()
+            }
 
-        UserRole.withSession {
-            it.flush()
-            it.clear()
-        }
+            if (Section.count() == 0) { // create data if no forum data found
+                // get all users
+                def users = User.list()
+                // create 3 sections
+                def section = new Section(title: 'Sports').save()
+                def topic = new Topic(section: section, title: 'Cross Country', description: 'Running').save()
+                def thread = new DiscussionThread(topic: topic, subject: 'Next Meet', opener: Rosetta).save()
+                def comment = new Comment(thread: thread, body: 'when?', commentBy: Rosetta).save()
+                topic = new Topic(section: section, title: 'Hockey', description: 'Brazos Valley Team Storm').save()
 
-        if ( Section.count() == 0 ) { // create data if no forum data found
-            // get all users
-            def users = User.list()
-            // create 3 sections
-            def section = new Section(title: 'Sports').save()
-            def topic = new Topic(section: section, title: 'Cross Country', description: 'Running').save()
-            def thread = new DiscussionThread(topic:topic, subject:'Next Meet', opener:Rosetta).save()
-            topic = new Topic(section: section, title: 'Hockey', description: 'Brazos Valley Team Storm').save()
 
-            section = new Section(title: 'Computer Science').save()
-            topic = new Topic(section: section, title: 'Grails', description: 'Web Application Framework').save()
-            thread = new DiscussionThread(topic:topic, subject:'Plugins', opener:Woody).save()
-            thread = new DiscussionThread(topic:topic, subject:'Security', opener:Serena).save()
-            topic = new Topic(section: section, title: 'JQuery', description: 'Javascript Library').save()
+                section = new Section(title: 'Computer Science').save()
+                topic = new Topic(section: section, title: 'Grails', description: 'Web Application Framework').save()
+                thread = new DiscussionThread(topic: topic, subject: 'Plugins', opener: Woody).save()
+                thread = new DiscussionThread(topic: topic, subject: 'Security', opener: Serena).save()
 
-            section = new Section(title: 'Biology').save()
-            topic = new Topic(section: section, title: 'Birds', description: 'Parrots Research').save()
-            thread = new DiscussionThread(topic:topic, subject:'Why Parrots Eat Soil', opener:Rosetta).save()
-            topic = new Topic(section: section, title: 'Dogs', description: 'Aggie Guide-Dogs and Service-Dogs').save()
-            /*
-            ('A'..'C').each { sectionLetter ->
-                def sectionTitle = "Section ${sectionLetter}"
-                def section = new Section(title: sectionTitle).save()
-                // create 4 topics per section
-                (1..4).each { topicNumber ->
-                    def topicTitle = "Topic ${sectionLetter}-${topicNumber}"
-                    def topicDescription = "Description of ${topicTitle}"
-                    def topic = new Topic(section: section, title: topicTitle, description: topicDescription).save()
-                    // create 10-20 threads each topic
-                    def numberOfThreads = random.nextInt(11)+10
-                    (1..numberOfThreads).each { threadNo ->
-                        def opener = users[random.nextInt(100)]
-                        def subject = "Subject ${sectionLetter}-${topicNumber}-${threadNo} "
-                        def thread = new DiscussionThread(topic:topic, subject:subject, opener:opener).save()
-                        new Comment(thread:thread, commentBy:opener, body:generateRandomComment()).save()
-                        // create 10-35 replies per thread
-                        def numberOfReplies = random.nextInt(26)+10
-                        numberOfReplies.times {
-                            def commentBy = users[random.nextInt(100)]
-                            new Comment(thread:thread, commentBy:commentBy, body:generateRandomComment()).save()
+                topic = new Topic(section: section, title: 'JQuery', description: 'Javascript Library').save()
+
+                section = new Section(title: 'Biology').save()
+                topic = new Topic(section: section, title: 'Birds', description: 'Parrots Research').save()
+                thread = new DiscussionThread(topic: topic, subject: 'Why Parrots Eat Soil?', opener: Rosetta).save()
+                comment = new Comment(thread: thread, body: 'Geophagia', commentBy: Rosetta).save()
+
+                topic = new Topic(section: section, title: 'Dogs', description: 'Aggie Guide-Dogs and Service-Dogs').save()
+                /*
+                ('A'..'C').each { sectionLetter ->
+                    def sectionTitle = "Section ${sectionLetter}"
+                    def section = new Section(title: sectionTitle).save()
+                    // create 4 topics per section
+                    (1..4).each { topicNumber ->
+                        def topicTitle = "Topic ${sectionLetter}-${topicNumber}"
+                        def topicDescription = "Description of ${topicTitle}"
+                        def topic = new Topic(section: section, title: topicTitle, description: topicDescription).save()
+                        // create 10-20 threads each topic
+                        def numberOfThreads = random.nextInt(11)+10
+                        (1..numberOfThreads).each { threadNo ->
+                            def opener = users[random.nextInt(100)]
+                            def subject = "Subject ${sectionLetter}-${topicNumber}-${threadNo} "
+                            def thread = new DiscussionThread(topic:topic, subject:subject, opener:opener).save()
+                            new Comment(thread:thread, commentBy:opener, body:generateRandomComment()).save()
+                            // create 10-35 replies per thread
+                            def numberOfReplies = random.nextInt(26)+10
+                            numberOfReplies.times {
+                                def commentBy = users[random.nextInt(100)]
+                                new Comment(thread:thread, commentBy:commentBy, body:generateRandomComment()).save()
+                            }
                         }
                     }
-                }
-            }*/
-        }
+                }*/
+            }
 
-        //assert User.count() == 2
-        assert Role.count() == 2
-        //assert UserRole.count() == 2
+            //assert User.count() == 2
+            assert Role.count() == 2
+            //assert UserRole.count() == 2
+        }
     }
     def destroy = {
     }

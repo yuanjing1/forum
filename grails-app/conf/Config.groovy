@@ -128,8 +128,12 @@ grails.plugin.springsecurity.filterChain.chainMap = [
         "/$base/api/**": 'JOINED_FILTERS,-exceptionTranslationFilter',
         '/**': 'JOINED_FILTERS,-basicAuthenticationFilter,-basicExceptionTranslationFilter'
 ]
-
+grails.plugin.springsecurity.rejectIfNoRule = false
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
+        '/game/**':     ['permitAll'],
+        '/project/**':  ['permitAll'],
+        '/**/delete':   ['ROLE_ADMIN'],
+        '/section/**':  ['permitAll'],
 	'/':                ['permitAll'],
 	'/index':           ['permitAll'],
 	'/index.gsp':       ['permitAll'],
@@ -147,7 +151,6 @@ grails.plugin.springsecurity.interceptUrlMap = [
         '/topic/*': ['ROLE_ADMIN']
 ]
 */
-
 grails.plugin.admin.accessRoot = "/$base"
 
 grails.plugin.admin.domains = [

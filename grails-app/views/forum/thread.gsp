@@ -40,6 +40,9 @@
                     </g:form>
                 </div>
             </sec:ifLoggedIn>
+<sec:ifNotLoggedIn>
+  <g:link controller="login" action="auth">Login to Comment</g:link>
+</sec:ifNotLoggedIn>
         </div>
 
         <div class="pagination">

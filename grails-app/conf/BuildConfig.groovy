@@ -84,5 +84,6 @@ grails.project.dependency.resolution = {
         compile ":mail:1.0.7"
         compile ":platform-core:1.0.0"
         compile ":searchable:0.6.9"
+        compile ":webflow:2.1.0"
     }
 }
