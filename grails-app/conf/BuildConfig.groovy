@@ -85,5 +85,7 @@ grails.project.dependency.resolution = {
         compile ":platform-core:1.0.0"
         compile ":searchable:0.6.9"
         compile ":webflow:2.1.0"
+        compile ':rich-domain:1.0.5'
+        compile ':gsp-taglib:0.5'
     }
 }
