@@ -28,7 +28,8 @@
 					<span id="topics-label" class="property-label"><g:message code="section.topics.label" default="Topics" /></span>
 					
 						<g:each in="${sectionInstance.topics}" var="t">
-						<span class="property-value" aria-labelledby="topics-label"><g:link controller="topic" action="show" id="${t.id}">${t?.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="topics-label">
+						<g:link controller="forum" action="topic" params="[topicId:t.id]" >${t?.encodeAsHTML()}</g:link></span>
 						</g:each>
 					
 				</li>
