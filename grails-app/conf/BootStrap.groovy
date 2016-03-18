@@ -5,6 +5,7 @@ import org.csisd.forum.Topic
 import org.csisd.user.Role
 import org.csisd.user.User
 import org.csisd.user.UserRole
+import org.livesnippets.webflow.ProjectDataCleanerService
 
 class BootStrap {
 
@@ -25,19 +26,26 @@ class BootStrap {
         }
         return sb.toString()
     }
+    ProjectDataCleanerService projectDataCleanerService
 
     def init = { servletContext ->
+        projectDataCleanerService.resetData()
         if (User.count() == 0) {
-            User admin = new User(username: 'admin', password: 'admin', email: 'xu_yuanjing@yahoo.com', enabled: true).save()
-            User Serena = new User(username: 'serena', password: 'serena', email: 'serenalwang@gmail.com', enabled: true).save()
-            User Woody = new User(username: 'woody', password: 'woody', email: 'woodywang153@gmail.com', enabled: true).save()
-            User Rosetta = new User(username: 'rosetta', password: 'rosetta', email: 'rosettawang@gmail.com', enabled: true).save()
+            User admin = new User(username: 'admin', password: 'admin', email: 'xu_yuanjing@yahoo.com', schoolid: '100000000', enabled: true).save()
+            User Serena = new User(username: 'serena', password: 'serena', email: 'serenalwang@gmail.com', schoolid: '100000000', enabled: true).save()
+            User Woody = new User(username: 'woody', password: 'woody', email: 'woodywang153@gmail.com', schoolid: '100000000', enabled: true).save()
+            User Rosetta = new User(username: 'rosetta', password: 'rosetta', email: 'rosettawang@gmail.com', schoolid: '100000000', enabled: true).save()
+
             Role roleAdmin = new Role(authority: 'ROLE_ADMIN').save()
+            Role roleEditor = new Role(authority: 'ROLE_EDITOR').save()
             Role roleUser = new Role(authority: 'ROLE_USER').save()
+
             UserRole.create admin, roleAdmin
             UserRole.create Serena, roleUser
             UserRole.create Woody, roleUser
+            UserRole.create Woody, roleEditor
             UserRole.create Rosetta, roleUser
+            UserRole.create Rosetta, roleAdmin
 
             UserRole.withSession {
                 it.flush()
@@ -53,7 +61,6 @@ class BootStrap {
                 def thread = new DiscussionThread(topic: topic, subject: 'Next Meet', opener: Rosetta).save()
                 def comment = new Comment(thread: thread, body: 'when?', commentBy: Rosetta).save()
                 topic = new Topic(section: section, title: 'Hockey', description: 'Brazos Valley Team Storm').save()
-
 
                 section = new Section(title: 'Computer Science').save()
                 topic = new Topic(section: section, title: 'Grails', description: 'Web Application Framework').save()
@@ -96,7 +103,7 @@ class BootStrap {
             }
 
             //assert User.count() == 2
-            assert Role.count() == 2
+            //assert Role.count() == 3
             //assert UserRole.count() == 2
         }
     }

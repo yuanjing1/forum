@@ -128,8 +128,8 @@ grails.plugin.springsecurity.filterChain.chainMap = [
         "/$base/api/**": 'JOINED_FILTERS,-exceptionTranslationFilter',
         '/**': 'JOINED_FILTERS,-basicAuthenticationFilter,-basicExceptionTranslationFilter'
 ]
-grails.plugin.springsecurity.rejectIfNoRule = false
-grails.plugin.springsecurity.fii.rejectPublicInvocations = false
+//grails.plugin.springsecurity.rejectIfNoRule = false
+//grails.plugin.springsecurity.fii.rejectPublicInvocations = false
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
         '/game/**':     ['permitAll'],
         '/project/**':  ['permitAll'],
@@ -137,7 +137,7 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
         '/userStory/**':['permitAll'],
         '/platform/**': ['permitAll'],
         '/order/**':    ['permitAll'],
-        '/**/delete':   ['ROLE_ADMIN'],
+        '/**/delete':   ['ROLE_ADMIN','ROLE_EDITOR'],
         '/**/show':   ['permitAll'],
         '/**/create':  ['IS_AUTHENTICATED_FULLY'],
         '/**/edit':  ['ROLE_EDITOR', 'ROLE_ADMIN'],

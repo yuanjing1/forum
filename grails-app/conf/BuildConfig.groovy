@@ -6,7 +6,7 @@ grails.project.work.dir = "target/work"
 grails.project.target.level = 1.6
 grails.project.source.level = 1.6
 //grails.project.war.file = "target/${appName}-${appVersion}.war"
-
+grails.server.port.http = 8090
 grails.project.fork = [
     // configure settings for compilation JVM, note that if you alter the Groovy version forked compilation is required
     //  compile: [maxMemory: 256, minMemory: 64, debug: false, maxPerm: 256, daemon:true],
@@ -80,7 +80,7 @@ grails.project.dependency.resolution = {
         //compile ":handlebars-asset-pipeline:1.3.0.3"
         compile ":spring-security-core:2.0.0"
         compile ":spring-security-ui:1.0-RC3"
-        compile ":admin-interface:0.7.1"
+        //compile ":admin-interface:0.7.1"
         compile ":mail:1.0.7"
         compile ":platform-core:1.0.0"
         compile ":searchable:0.6.9"

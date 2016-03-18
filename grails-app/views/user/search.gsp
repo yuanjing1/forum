@@ -47,8 +47,10 @@
 			<div class="list">
 			<table>
 				<thead>
-				<tr>
-					<s2ui:sortableColumn property='username' titleDefault='Username'/>
+				<tr><s2ui:sortableColumn property='username' titleDefault='Username'/>
+                    <s2ui:sortableColumn property='email' titleDefault='email'/>
+                    <s2ui:sortableColumn property='schoolid' titleDefault='School ID'/>
+
 					<s2ui:sortableColumn property='enabled' titleDefault='Enabled'/>
 					<s2ui:sortableColumn property='accountExpired' titleDefault='Account Expired'/>
 					<s2ui:sortableColumn property='accountLocked' titleDefault='Account Locked'/>
@@ -58,11 +60,15 @@
 				<tbody>
 				<g:each in='${results}' status='i' var='user'>
 				<tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
-					<td><g:link action='edit' id='${user.id}'>${uiPropertiesStrategy.getProperty(user, 'username')}</g:link></td>
+                    <td><g:link action='edit' id='${user.id}'>${uiPropertiesStrategy.getProperty(user, 'username')}</g:link></td>
+                    <td>${user.email}</td>
+                    <td>${user.schoolid}</td>
+
 					<td><s2ui:formatBoolean bean='${user}' name='enabled'/></td>
 					<td><s2ui:formatBoolean bean='${user}' name='accountExpired'/></td>
 					<td><s2ui:formatBoolean bean='${user}' name='accountLocked'/></td>
 					<td><s2ui:formatBoolean bean='${user}' name='passwordExpired'/></td>
+
 				</tr>
 				</g:each>
 				</tbody>

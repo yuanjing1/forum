@@ -39,11 +39,10 @@
             </ol>
 			<g:form url="[resource:sectionInstance, action:'delete']" method="DELETE">
 				<fieldset class="buttons">
+                    <sec:ifAllGranted roles='ROLE_EDITOR'>
 					<g:link class="edit" action="edit" resource="${sectionInstance}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
-
-                <sec:ifAllGranted roles='ROLE_ADMIN'>
 					<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
-                </sec:ifAllGranted>
+                    </sec:ifAllGranted>
 
                     </fieldset>
 			</g:form>

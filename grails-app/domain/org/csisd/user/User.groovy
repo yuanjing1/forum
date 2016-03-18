@@ -14,16 +14,18 @@ class User implements Serializable {
 	String username
 	String password
 	String email
+    String schoolid
 	boolean enabled = true
 	boolean accountExpired
 	boolean accountLocked
 	boolean passwordExpired
 
-	User(String username, String password, String email) {
+	User(String username, String password, String email, String myschoolid) {
 		this()
 		this.username = username
 		this.password = password
         this.email = email
+        this.schoolid = myschoolid
 	}
 
 	Set<Role> getAuthorities() {
@@ -50,6 +52,7 @@ class User implements Serializable {
 		username blank: false, unique: true
 		password blank: false
         email email: true, unique: true, blank: false
+        schoolid size: 9..9
 	}
 
 	static mapping = {
