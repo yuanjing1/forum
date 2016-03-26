@@ -48,7 +48,7 @@ body {
 }
 
 #grailsLogo {
-	background-color: #abbf78;
+	background-color: #7F67A7;
 }
 
 /* replace with .no-boxshadow body if you have modernizr available */
@@ -65,15 +65,17 @@ body {
 }
 
 a:link, a:visited, a:hover {
-	color: #48802c;
+	color: #C4C64F;
+    text-decoration: none;
 }
 
 a:hover, a:active {
+    color: blue; //background: yellow;
 	outline: none; /* prevents outline in webkit on active links but retains it for tab focus */
 }
 
 h1 {
-	color: #48802c;
+	color: #C4C64F;
 	font-weight: normal;
 	font-size: 1.25em;
 	margin: 0.8em 0 0.3em 0;
@@ -108,7 +110,7 @@ img {
 }
 
 .footer {
-	background: #abbf78;
+	background: #7F67A7;
 	color: #000;
 	clear: both;
 	font-size: 0.8em;
@@ -283,7 +285,7 @@ input:focus, select:focus, textarea:focus {
 }
 
 .required-indicator {
-	color: #48802C;
+	color: #C4C64F;
 	display: inline-block;
 	font-weight: bold;
 	margin-left: 0.3em;
